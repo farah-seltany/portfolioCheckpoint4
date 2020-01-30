@@ -1,7 +1,6 @@
 import { User } from './../models/user';
 import { UsersService } from './../services/users.service';
 import express, { Router, Request, Response, Application } from 'express';
-import { AuthService } from './../services/auth.service';
 
 /**
  * Ce controller vous servira de modèle pour construire vos différent controller
@@ -13,22 +12,23 @@ import { AuthService } from './../services/auth.service';
 export const UsersController = (app: Application) => {
 
     const router: Router = express.Router();
-    const usersService = UsersService.getInstance();
-    const authService = AuthService.getInstance();
+    const userService = UsersService.getInstance();
 
     /**
-     * Return the connected user relative to the connected token
+     * Return all posts in JSON
      */
-    router.get('/me', authService.verifyToken, (req: Request, res: Response) => {
-      res.send(req.user);
+    router.get('/', (req: Request, res: Response) => {
+      userService.getAll().then(result => {
+          res.send(result);
+      })
     });
 
     /**
-     * Return only one user in JSON relative to its id
+     * Return only one post in JSON relative to its id
      */
-    router.get('/:id', authService.verifyToken, (req: Request, res: Response) => {
+    router.get('/:id', (req: Request, res: Response) => {
       const id = parseInt(req.params.id);
-      usersService.getById(id).then(result => {
+      userService.getById(id).then(result => {
             res.send(result);
         })
         .catch(err => {
@@ -37,13 +37,40 @@ export const UsersController = (app: Application) => {
     });
 
     /**
-     * Create a new user from a JSON body and return the created user in JSON.
+     * Create a new post from a JSON body and return the created post in JSON.
      */
     router.post('/', (req: Request, res: Response) => {
-      const user: User = req.body; // Automatically transform in a User object
-
-      usersService.create(user).then(result => {
+      const user: User = req.body; // Automatically transform in a Post object
+      userService.create(user).then(result => {
             res.send(result);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    });
+
+    /**
+     * Update a post relative to its id and return the updated post in JSON.
+     */
+    router.put('/:id', (req: Request, res: Response) => {
+      const user: User = req.body; // req.params.id is automatically set into the body
+
+      userService.update(user).then(result => {
+            res.send(result);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    });
+
+    /**
+     * Delete a post relative its id.
+     */
+    router.delete('/:id', (req: Request, res: Response) => {
+      const id = parseInt(req.params.id);
+
+      userService.delete(id).then(result => {
+            res.send();
         })
         .catch(err => {
           console.log(err);

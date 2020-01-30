@@ -1,0 +1,87 @@
+<div class="contact">
+
+    <div class="formTitle">
+        <p>Contacts</p>
+    </div>
+    <div class="accordions">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="panelTitle">
+              Mail
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p><a href="mailto:{{user.email}}">Envoyer un mail</a></p>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="panelTitle">
+              Téléphone
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>+33 {{user.telephone}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="panelTitle">
+              Réseaux sociaux
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="reseaux">
+            <a href="https://www.linkedin.com/in/farahseltanyn/" target="_blank"><img src="../../assets/img/linkedin.png" alt="Profil LinkedIn" title="Profil LinkedIn"></a> <br/>
+            <a href="https://github.com/farah-seltany" target="_blank"><img src="../../assets/img/github2.png" alt="Compte GitHub" title="Compte GitHub"></a><br/>
+            <a href="https://twitter.com/SeltanyN" target="_blank"><img src="../../assets/img/twitter.png" alt="Profil Twitter" title="Profil Twitter"></a>
+          </div>
+          
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    
+      
+    <!-- <form class="contactForm" [formGroup]="contactForm" (ngSubmit)="send()">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Téléphone" formControlName="phone"></textarea>
+        </mat-form-field><br/>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Email" formControlName="email"></textarea>
+      </mat-form-field><br/>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Entreprise" formControlName="company"></textarea>
+      </mat-form-field><br/>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Type de contrat proposé</mat-label>
+        <mat-select formControlName="contrat">
+          <mat-option [value]="CDI">
+            CDI
+          </mat-option>
+          <mat-option value="CDD">
+            CDD
+          </mat-option>
+          <mat-option value="stage">
+            Stage
+          </mat-option>
+          <mat-option value="autre">
+            Autre
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br/>
+
+      <mat-form-field class="message">
+        <textarea matInput placeholder="Message ..." formControlName="message"></textarea>
+      </mat-form-field>
+      <div class="button">
+        <button type="submit">Envoyer</button>
+      </div>
+   
+    </form> -->
+</div>

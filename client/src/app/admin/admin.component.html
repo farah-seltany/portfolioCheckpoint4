@@ -1,0 +1,106 @@
+<div class="container">
+    <mat-tab-group>
+        <mat-tab label="Informations personnelles"> 
+            <div class="editSkills">
+                <mat-icon matPrefix (click)="updateUser(user)">edit</mat-icon>                
+            </div>  
+            <form class="user" *ngIf="user">
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Prénom" name="firstname" [(ngModel)]="user.firstname" [disabled]="updateIsActive">
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Nom" name="lastname" [(ngModel)]="user.lastname" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Métier" name="title" [(ngModel)]="user.title" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Phrase d'accroche" name="description" [(ngModel)]="user.description" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Téléphone" name="telephone" [(ngModel)]="user.telephone" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Email" name="email" [(ngModel)]="user.email" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="LinkedIn" name="linkedin" [(ngModel)]="user.linkedin" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="GitHub" name="github" [(ngModel)]="user.github" [disabled]='updateIsActive'>
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Twitter" name="twitter" [(ngModel)]="user.twitter" [disabled]='updateIsActive'>
+                </mat-form-field>
+            </form>
+        </mat-tab>
+        <mat-tab label="Skills">
+            <div class="editSkills">
+                <mat-icon matPrefix (click)="updateSkill(skill)">edit</mat-icon>                
+            </div>  
+            <div class="cardContainer">
+                         
+                <div class="featureCard" *ngFor="let skill of skills">
+                    <div class="text">    
+                        <mat-form-field class="row">
+                            <input matInput  placeholder="Titre" name="title" [(ngModel)]="skill.title" [disabled]='updateIsActive'>
+                        </mat-form-field>
+                        <mat-form-field class="row">
+                            <textarea matInput  placeholder="Description" name="description" [(ngModel)]="skill.description" [disabled]='updateIsActive'></textarea>
+                        </mat-form-field>        
+                    </div>
+                   
+                </div>
+            </div> 
+        </mat-tab>
+        <mat-tab label="Compétences"> 
+           <app-comp-add></app-comp-add>
+                <div class="compCard" *ngFor="let comp of comps">
+                    <div class="edit">
+                        <mat-icon matPrefix (click)="updateComp(comp)">edit</mat-icon>                
+                        <mat-icon matPrefix (click)="deleteComp(comp)">delete</mat-icon> 
+                    </div>           
+                    <mat-form-field class="row">
+                        <input matInput  placeholder="Titre" name="title" [(ngModel)]="comp.title" [disabled]='updateIsActive'>
+                    </mat-form-field>
+                    <mat-form-field class="row">
+                        <input matInput  placeholder="Note" name="rating" [(ngModel)]="comp.rating" [disabled]='updateIsActive'>
+                    </mat-form-field>
+                    <form [formGroup]="updateRealForm">
+                        <div class="image">
+                            <img src="http://localhost:3000/{{comp.image}}">  
+                            <input type="file" (change)="onFileSelect($event)" *ngIf="!updateIsActive" placeholder="Image"/><br/>
+                        </div> 
+                        </form>
+                </div>
+        </mat-tab>
+        <mat-tab label="Réalisations"> 
+            <app-real-add></app-real-add>
+            <div class="realCard" *ngFor="let real of reals">
+                <div class="edit">
+                    <mat-icon matPrefix (click)="updateReal(real)">edit</mat-icon>                
+                    <mat-icon matPrefix (click)="deleteReal(real)">delete</mat-icon> 
+                </div>           
+
+                    <mat-form-field class="row">
+                        <input matInput  placeholder="Titre" name="title" [(ngModel)]="real.title" [disabled]='updateIsActive'>
+                    </mat-form-field>
+                    <mat-form-field class="row">
+                        <textarea matInput  placeholder="Technologie" name="rating" [(ngModel)]="real.subtitle" [disabled]='updateIsActive'></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="row">
+                        <textarea matInput  placeholder="Description" name="description" [(ngModel)]="real.description" [disabled]='updateIsActive'></textarea>
+                    </mat-form-field>  
+                    <mat-form-field class="row">
+                        <textarea matInput  placeholder="Lien" name="lien" [(ngModel)]="real.lien" [disabled]='updateIsActive'></textarea>
+                    </mat-form-field>  
+                    <form [formGroup]="updateRealForm">
+                    <div class="image">
+                        <img src="http://localhost:3000/{{real.image}}">  
+                        <input type="file" (change)="onFileSelect($event)" *ngIf="!updateIsActive" placeholder="Image"/><br/>
+                    </div> 
+                    </form>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+</div>

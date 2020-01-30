@@ -1,7 +1,6 @@
-import { Post } from './../models/post';
-import { PostsService } from './../services/posts.service';
+import { Skill } from './../models/skill';
+import { SkillsService } from './../services/skills.service';
 import express, { Router, Request, Response, Application } from 'express';
-import { AuthService } from './../services/auth.service';
 
 /**
  * Ce controller vous servira de modèle pour construire vos différent controller
@@ -10,18 +9,18 @@ import { AuthService } from './../services/auth.service';
  *
  * @param app l'application express
  */
-export const PostsController = (app: Application) => {
+export const SkillsController = (app: Application) => {
 
     const router: Router = express.Router();
-    const postsService = PostsService.getInstance();
-    const authService = AuthService.getInstance();
+    const skillsService = SkillsService.getInstance();
 
     /**
      * Return all posts in JSON
      */
     router.get('/', (req: Request, res: Response) => {
-      //authService.connectedUser;
-      res.send([3, 4, 5]);
+        skillsService.getAll().then(result => {
+          res.send(result);
+      })
     });
 
     /**
@@ -29,7 +28,7 @@ export const PostsController = (app: Application) => {
      */
     router.get('/:id', (req: Request, res: Response) => {
       const id = parseInt(req.params.id);
-      postsService.getById(id).then(result => {
+      skillsService.getById(id).then(result => {
             res.send(result);
         })
         .catch(err => {
@@ -40,10 +39,9 @@ export const PostsController = (app: Application) => {
     /**
      * Create a new post from a JSON body and return the created post in JSON.
      */
-    router.post('/', authService.verifyToken, (req: Request, res: Response) => {
-      const post: Post = req.body; // Automatically transform in a Post object
-
-      postsService.create(post).then(result => {
+    router.post('/', (req: Request, res: Response) => {
+      const skill: Skill = req.body; // Automatically transform in a Post object
+      skillsService.create(skill).then(result => {
             res.send(result);
         })
         .catch(err => {
@@ -54,10 +52,10 @@ export const PostsController = (app: Application) => {
     /**
      * Update a post relative to its id and return the updated post in JSON.
      */
-    router.put('/:id', authService.verifyToken, (req: Request, res: Response) => {
-      const post: Post = req.body; // req.params.id is automatically set into the body
+    router.put('/:id', (req: Request, res: Response) => {
+      const skill: Skill = req.body; // req.params.id is automatically set into the body
 
-      postsService.update(post).then(result => {
+      skillsService.update(skill).then(result => {
             res.send(result);
         })
         .catch(err => {
@@ -71,7 +69,7 @@ export const PostsController = (app: Application) => {
     router.delete('/:id', (req: Request, res: Response) => {
       const id = parseInt(req.params.id);
 
-      postsService.delete(id).then(result => {
+      skillsService.delete(id).then(result => {
             res.send();
         })
         .catch(err => {
@@ -79,5 +77,5 @@ export const PostsController = (app: Application) => {
         })
     });
 
-    app.use('/posts', router);
+    app.use('/skills', router);
 };
