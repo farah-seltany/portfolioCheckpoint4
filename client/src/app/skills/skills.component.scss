@@ -1,0 +1,67 @@
+.features
+{
+    width: 100%;
+    margin: 0 auto;
+    border-top: 1px solid #8b8b8b;
+}
+
+.cardContainer
+{
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 8%;
+}
+
+.featureCard
+{
+    display: flex;
+    width: 30%;
+    height: auto;
+}
+
+img
+{
+    margin-right: 2%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+p
+{
+   
+    color: #707070;
+}
+
+.title
+{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: 2%;
+  
+}
+
+.featureTitle
+{
+    font-weight: bold;
+}
+
+.desc
+{
+    font-style: italic;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.accroche
+{
+    font-size: 15px;
+    font-style: italic;
+    color: #707070;
+    text-align: center;
+    margin-bottom: 8%;
+}

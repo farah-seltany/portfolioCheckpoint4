@@ -1,0 +1,64 @@
+.competences
+{
+    border-top: 1px solid #8b8b8b;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.compTitle
+{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    color: #707070;
+}
+
+.competencesContainer
+{
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
+    padding: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.compCard
+{
+    margin: 0 auto;
+    padding: 2%;
+    text-align: center;
+    margin-right: 8%;
+    margin-bottom: 8%;
+    display: flex;
+    width: 100%;
+}
+
+::ng-deep .mat-progress-bar
+{
+    align-self: center;
+    height: 50px;
+}
+
+img, p
+{
+    margin-bottom: 6%;
+}
+
+p
+{
+    color: #3d1458;
+    font-weight: bold;
+
+}
+
+img
+{
+    width: 80px;
+}
+
+
+

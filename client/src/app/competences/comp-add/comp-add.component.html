@@ -1,0 +1,33 @@
+<div class="createButtonDiv">
+    <button mat-button class="createButton" (click)="showAddComp()">
+        Ajouter une compétence
+        <mat-icon matPrefix>add</mat-icon>
+      </button>
+</div>    
+    <div class="addComp">
+        <div class="compCardAdd" *ngIf="addComp">
+            <div class="edit">
+                <mat-icon matPrefix (click)="showAddComp()">close</mat-icon> 
+            </div>
+            <form [formGroup]="addCompForm" (ngSubmit)="addComps()" >
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Titre" formControlName="title">
+                </mat-form-field>
+                    <!-- <input matInput  placeholder="Note" formControlName="rating"> -->
+                    <label class="example-margin">Maitrise : </label>
+                    <div class="rate">
+                        <mat-slider class="example-margin" formControlName="rating" [max]="5" #matslider></mat-slider>
+                        <div class="rateValue" *ngIf="matslider.value == 0">Nul</div>
+                        <div class="rateValue" *ngIf="matslider.value == 1">Débutant</div>
+                        <div class="rateValue" *ngIf="matslider.value == 2">Apprenant</div>
+                        <div class="rateValue" *ngIf="matslider.value == 3">Intermédiare</div>
+                        <div class="rateValue" *ngIf="matslider.value == 4">Confirmé</div>
+                        <div class="rateValue" *ngIf="matslider.value == 5">Expert</div>
+                    </div>
+                    <label>Image</label><br/>
+                    <input type="file" (change)="onFileSelect($event)" placeholder="Image"/><br/>
+                <button class="submit" type="submit">Enregistrer</button>      
+            </form>
+                      
+        </div>
+</div>

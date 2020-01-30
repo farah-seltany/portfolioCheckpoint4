@@ -1,25 +1,25 @@
-import { PostsRepository } from './../repository/posts.repository';
-import { Post } from 'src/models/post';
+import { SkillsRepository } from './../repository/skills.repository';
+import { Skill } from 'src/models/skill';
 /**
  * Cette classe est un service
  * C'est ici que l'ensemble de la logique consernant les post doit apparaitre.
  * Attention ! Mettez le moins possible d'element dans le controller
  */
-export class PostsService {
+export class SkillsService {
 
     // Make service => singletonTransformation de notre service en singleton
-    private static instance: PostsService;
+    private static instance: SkillsService;
     static getInstance() {
         if (!this.instance) {
-            this.instance = new PostsService();
+            this.instance = new SkillsService();
         }
         return this.instance;
     }
 
     // Un singleton est une class ayant une instance unique a travers toute l'app
-    private repository: PostsRepository;
+    private repository: SkillsRepository;
     private constructor() {
-        this.repository = PostsRepository.getInstance();
+        this.repository = SkillsRepository.getInstance();
     }
 
     // Business logic
@@ -27,7 +27,7 @@ export class PostsService {
     /**
      * Return a promise which contains an array of posts.
      */
-    getAll(): Promise<Post[]> {
+    getAll(): Promise<Skill[]> {
         return this.repository.findAll();
     }
 
@@ -35,7 +35,7 @@ export class PostsService {
      * Return a promise which contains the post relative to the id in parameter.
      * @param id post id
      */
-    getById(id: number): Promise<Post> {
+    getById(id: number): Promise<Skill> {
         return this.repository.findById(id);
     }
 
@@ -43,16 +43,16 @@ export class PostsService {
      * Create a new post and return a promise which contains the created post.
      * @param post post to create
      */
-    create(post: any): Promise<Post> {
-      return this.repository.insert(post);
+    create(skill: any): Promise<Skill> {
+      return this.repository.insert(skill);
     }
 
     /**
      * Update the post in parameter and return a promise which contains the updated post.
      * @param post post to update
      */
-    update(post: any): Promise<Post> {
-      return this.repository.update(post);
+    update(skill: any): Promise<Skill> {
+      return this.repository.update(skill);
     }
 
     /**

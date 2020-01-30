@@ -1,0 +1,35 @@
+<div class="createButtonDiv">
+    <button mat-button class="createButton" (click)="showAddComp()">
+        Ajouter une réalisation
+        <mat-icon matPrefix>add</mat-icon>
+      </button>
+</div>    
+    <div class="addComp">
+        <div class="compCardAdd" *ngIf="addReal">
+            <div class="edit">
+                <mat-icon matPrefix (click)="showAddComp()">close</mat-icon> 
+            </div>
+
+            <form [formGroup]="addRealForm" (ngSubmit)="addReals()" >
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Titre" formControlName="title">
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Technologie" formControlName="subtitle">
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Description" formControlName="description">
+                </mat-form-field>
+                <mat-form-field class="row">
+                    <input matInput  placeholder="Lien" formControlName="lien">
+                </mat-form-field>
+                <br/>
+                <label>Image</label><br/>
+                    <input type="file" (change)="onFileSelect($event)" placeholder="Image"/><br/>
+                <div class="button">
+                    <button mat-raised-button type="submit">Enregistrer</button>
+                </div> 
+            </form>
+                                  
+        </div>
+</div>

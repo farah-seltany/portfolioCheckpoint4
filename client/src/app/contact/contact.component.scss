@@ -1,0 +1,114 @@
+.contact
+{
+    padding-top: 10%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6%;
+    border-bottom: 1px solid #8b8b8b;
+
+}
+
+.accordions
+{
+  min-width: 150px;
+    max-width: 60%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.contactForm {
+    min-width: 150px;
+    max-width: 60%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .example-full-width {
+    width: 100%;
+    height: auto;
+  }
+ 
+  .message
+  {
+    width: 100%;
+    height: auto;
+  }
+
+  .message textarea
+  {
+    height: 200px;
+  }
+
+  .formTitle
+  {
+    font-size: 35px;
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    color: #707070;
+
+  }
+
+  button
+  {
+    width: 150px;
+    height: 50px;
+    border-radius: 45px;
+    font-size: 15px;
+    background-color: #3d1458;
+    color: white;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+
+  button:hover {
+    background-color: #3d1458;
+    box-shadow: 0px 15px 20px rgba(60, 57, 65, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+
+  .button
+  {
+      margin-top: 6%;
+      display: flex;
+      justify-content: center;
+  }
+
+  ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #3d1458 !important;;
+   }
+
+   ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #3d1458 !important;
+   }
+
+   .panelTitle
+   {
+    color: #3d1458 !important;
+   }
+
+   .reseaux
+   {
+     display: flex;
+     align-items: center;
+     margin: 0 auto;
+     width: 50%;
+     justify-content: space-between;
+     padding-top: 8%;
+     padding-bottom: 8%;
+   }
+
+   a
+   {
+     text-decoration: none;
+     color: black;
+   }

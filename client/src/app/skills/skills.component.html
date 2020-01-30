@@ -1,0 +1,15 @@
+<div class="features">
+    <p class="title">A propos</p>
+    <p class="accroche">Phrase d'accroche que je n'ai pas encore trouvée</p>
+    <div class="cardContainer">
+        <div class="featureCard" *ngFor="let skill of skills">
+            <img src="../../assets/img/checked.png">
+            <div class="text">
+                <p class="featureTitle">{{ skill.title }}</p><br/>
+                <p class="desc">{{ skill.description }}</p>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>

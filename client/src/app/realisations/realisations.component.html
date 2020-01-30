@@ -1,0 +1,23 @@
+<div class="realisations">
+    <p class="title">Réalisations</p>
+    <div class="cardContainer">
+        <div class="realCard" *ngFor="let real of reals">
+           <div class="realTitle">
+               <p>{{ real.title }}</p>
+           </div>
+            <div class="subtitle">
+                <p>{{ real.subtitle }}</p><br/>
+                <p>Desktop</p>
+            </div>
+            <div class="image"><img class="southpark" src="http://localhost:3000/{{real.image}}"></div>
+            <div class="desc">
+                <p>{{ real.description }}</p>
+            </div>
+            <div class="button">
+                <a href="{{real.lien}}" target="_blank"><button>Ouvrir</button></a>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>

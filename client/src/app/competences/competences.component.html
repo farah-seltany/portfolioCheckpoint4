@@ -1,0 +1,15 @@
+<div class="competences">
+    <p class="compTitle">Compétences</p>
+    <div class="competencesContainer">
+        <div class="compCard" *ngFor="let comp of comps">
+            <div class="left">
+                <img src="http://localhost:3000/{{comp.image}}">
+                <p>{{ comp.title }}</p>
+            </div>
+
+            <mat-progress-bar value="{{comp.rating * 20}}">
+            </mat-progress-bar>
+        </div>
+        
+    </div>
+</div>
