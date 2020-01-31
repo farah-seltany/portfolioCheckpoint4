@@ -1,5 +1,8 @@
 import { UsersRepository } from './../repository/users.repository';
 import { User } from 'src/models/user';
+import * as jwt from 'jsonwebtoken';
+import * as argon2 from 'argon2';
+import { Request, Response } from 'express';
 /**
  * Cette classe est un service
  * C'est ici que l'ensemble de la logique consernant les post doit apparaitre.
@@ -16,11 +19,76 @@ export class UsersService {
         return this.instance;
     }
 
-    // Un singleton est une class ayant une instance unique a travers toute l'app
-    private repository: UsersRepository;
-    private constructor() {
-        this.repository = UsersRepository.getInstance();
+       // Un singleton est une class ayant une instance unique a travers toute l'app
+       private repository: UsersRepository;
+       private constructor() {
+           this.repository = UsersRepository.getInstance();
+       }
+
+    async signup(user: User): Promise<User> {
+      user.password = await argon2.hash(user.password);
+      console.log(user.password)
+      return this.repository.insert(user);
     }
+
+    async signin(email: string, password: string) {
+      const user = await this.repository.findByEmail(email);
+      if (!user) {
+          throw new Error('Les informations ne sont pas valide');
+      }
+      const isValid = await argon2.verify(user.password, password);
+      if (!isValid) {
+          throw new Error('Les informations ne sont pas valide');
+      }
+      const userToken = {
+          email: user.email,
+          id: user.id
+      };
+      const secret = process.env.JWT_SECRET;
+      if (!secret) {
+          throw new Error('Pas de secret setup');
+      }
+
+      const token = jwt.sign(userToken, secret);
+      return {
+          token,
+          email: user.email,
+          id: user.id,
+      };
+  }
+
+    async changePassword(user: User): Promise<User> {
+      user.password = await argon2.hash(user.password);
+      return this.repository.changePassword(user);
+    }
+
+    async verifyToken(req: Request, res: Response, next: Function) {
+      const authorization = req.headers.authorization;
+      console.log(req.headers)
+      const bearerToken = authorization?.split(' ')[1];
+      console.log("bearer" + bearerToken)
+      if (!bearerToken) {
+          res.sendStatus(401);
+      }
+      else {
+          try {
+              const secret = process.env.JWT_SECRET ? process.env.JWT_SECRET : '';
+
+              const results: any = await jwt.verify(bearerToken, secret);
+              const user = await UsersRepository.getInstance().findByEmail(results.email);
+              req.user = {
+                  ...user,
+                  password: undefined
+              };
+              next();
+          } catch(e) {
+              console.log(e);
+              res.sendStatus(401);
+          }
+      }
+  }
+
+ 
 
     // Business logic
 

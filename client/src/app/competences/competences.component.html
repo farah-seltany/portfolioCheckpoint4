@@ -6,9 +6,14 @@
                 <img src="http://localhost:3000/{{comp.image}}">
                 <p>{{ comp.title }}</p>
             </div>
-
-            <mat-progress-bar value="{{comp.rating * 20}}">
+            <mat-progress-bar #matprogressbar value="{{comp.rating * 20}}">
             </mat-progress-bar>
+            <div *ngIf="matprogressbar.value / 20 == 0"><p class="grade">Nul</p></div>
+            <div *ngIf="matprogressbar.value / 20 == 1"><p class="grade">Débutant</p></div>
+            <div *ngIf="matprogressbar.value / 20 == 2"><p class="grade">Apprenti</p></div>
+            <div *ngIf="matprogressbar.value / 20 == 3"><p class="grade">Intermédiaire</p></div>
+            <div *ngIf="matprogressbar.value / 20 == 4"><p class="grade">Confirmé</p></div>
+            <div *ngIf="matprogressbar.value / 20 == 5"><p class="grade">Expert</p></div>
         </div>
         
     </div>

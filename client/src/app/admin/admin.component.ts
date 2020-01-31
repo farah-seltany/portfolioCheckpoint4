@@ -132,12 +132,22 @@ export class AdminComponent implements OnInit {
 
   deleteComp(comp)
   {
-    this.compService.deleteComp(comp).subscribe(result => result);
+    this.compService.deleteComp(comp).subscribe((result) => {
+      let index = this.comps.findIndex(t => t.title === comp.title);
+      this.comps.splice(index, 1);
+      return this.comps;
+    }
+      );
   }
 
   deleteReal(real)
   {
-    this.realServie.deleteReal(real).subscribe(result => result);
+    this.realServie.deleteReal(real).subscribe((result) => {
+      let index = this.reals.findIndex(t => t.title === real.title);
+      this.reals.splice(index, 1);
+      return this.reals;
+    }
+      );
   }
 
  

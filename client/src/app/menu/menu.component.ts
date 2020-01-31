@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
+import { AuthService } from '../shared/auth.service';
 declare var require: any;
 const FileSaver = require('file-saver');
 
@@ -14,7 +15,7 @@ export class MenuComponent implements OnInit {
 
   user: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -33,6 +34,12 @@ export class MenuComponent implements OnInit {
       this.user = result[0];
 
     });
+  }
+
+  logout()
+  {
+    this.userService.connectedUser = undefined;
+    this.authService.logout();
   }
 
 }

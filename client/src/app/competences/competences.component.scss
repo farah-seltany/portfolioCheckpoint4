@@ -35,6 +35,7 @@
     margin-bottom: 8%;
     display: flex;
     width: 100%;
+    align-items: center;
 }
 
 ::ng-deep .mat-progress-bar
@@ -58,6 +59,22 @@ p
 img
 {
     width: 80px;
+}
+
+.mat-progress-bar
+{
+    height: 14px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: rgb(255, 175, 55);
+}
+
+.grade
+{
+    color: #3d1458;
 }
 
 

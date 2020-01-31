@@ -1,12 +1,32 @@
 <div class="header">
 
-    <div class="name">{{user?.firstname}} <span class="lastname">{{user?.lastname}}</span></div>
+    <div class="desktopMenu">
+        <div class="name">{{user?.firstname}} <span class="lastname">{{user?.lastname}}</span></div>
     <div class="menu">
             <a href="#">Accueil</a>
             <a routerLink='competences'>Compétences</a>
             <a routerLink='realisations'>Réalisations</a>
             <a href="../../assets/CVFarahSELTANY.pdf" target="_blank">CV</a>
             <a routerLink="contact">Contact</a>
+            <a (click)="logout()" *ngIf="userService.connectedUser">Déconnexion</a>
+    </div>
+    </div>
+    
+
+    <div class="mobileMenu">
+        <div class="name">{{user?.firstname}} <span class="lastname">{{user?.lastname}}</span></div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item><a href="#">Accueil</a></button>
+            <button mat-menu-item><a routerLink='competences'>Compétences</a></button>
+            <button mat-menu-item><a routerLink='realisations'>Réalisations</a></button>
+            <button mat-menu-item><a href="../../assets/CVFarahSELTANY.pdf" target="_blank">CV</a></button>
+            <button mat-menu-item> <a routerLink="contact">Contact</a>
+            </button>
+          </mat-menu>
+          
     </div>
    
 </div>

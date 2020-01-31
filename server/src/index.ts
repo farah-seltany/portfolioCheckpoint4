@@ -8,7 +8,6 @@ import { RealisationsController } from './controller/realisations.controller';
 async function startServer() {
   // Récupération de l'application initiale
   const app = express();
-
   // Certificate
   
   // Chargement des différent loader

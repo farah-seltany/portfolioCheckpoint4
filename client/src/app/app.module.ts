@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
@@ -23,8 +23,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CompAddComponent } from './competences/comp-add/comp-add.component';
 import { RealAddComponent } from './realisations/real-add/real-add.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSliderModule } from '@angular/material/slider'
-
+import { MatSliderModule } from '@angular/material/slider';
+import { LoginComponent } from './login/login.component'
+import { AuthInterceptor } from './shared/auth-interceptor';
+import { UserService } from './shared/user.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ConfirmationChangementComponent } from './confirmation-changement/confirmation-changement.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,9 @@ import { MatSliderModule } from '@angular/material/slider'
     AdminComponent,
     CompAddComponent,
     RealAddComponent,
+    LoginComponent,
+    ChangePasswordComponent,
+    ConfirmationChangementComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +62,18 @@ import { MatSliderModule } from '@angular/material/slider'
     MatExpansionModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatSliderModule
+    MatSliderModule,
+    MatMenuModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationChangementComponent ]
+
 })
 export class AppModule { }
