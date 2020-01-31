@@ -11,6 +11,8 @@ export class User {
     twitter!: string;
     cv!: string;
     photo!: string;
+    password!: string;
+
 
   
     constructor(input: User) {

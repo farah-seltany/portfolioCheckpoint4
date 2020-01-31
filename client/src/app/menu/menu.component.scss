@@ -9,6 +9,7 @@
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 1%;
+    margin-bottom: 10%;
     z-index: 15;
     position: fixed;
     background-color: white;
@@ -57,4 +58,53 @@ a:active
     color: #3d1458;
     cursor: pointer;
     font-style: italic;
+}
+
+.mobileMenu
+{
+    display: none;
+}
+
+.desktopMenu
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .desktopMenu
+    {
+        display: none;
+    }
+
+    .mobileMenu
+    {
+        display: block;
+    }
+    .matMenu
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    a:hover
+    {
+    text-decoration: none;
+    color: #707070;
+    font-style: normal;
+    font-size: 14px;
+
+    }
+
+    .mat-icon
+    {
+        color: #3d1458;
+    }
+
+    .mobileMenu button
+    {
+        border: 0px;
+    }
+
 }

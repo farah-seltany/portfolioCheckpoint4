@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { RealService } from 'src/app/shared/real.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material';
+import { ConfirmationChangementComponent } from 'src/app/confirmation-changement/confirmation-changement.component';
+import { ChangePasswordComponent } from 'src/app/change-password/change-password.component';
 
 @Component({
   selector: 'app-real-add',
@@ -20,7 +23,10 @@ export class RealAddComponent implements OnInit {
     image: [null]
   })
 
-  constructor(private fb: FormBuilder, private realService: RealService, private http: HttpClient) { }
+  constructor(
+    private fb: FormBuilder, 
+    private realService: RealService, 
+    private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -51,6 +57,7 @@ export class RealAddComponent implements OnInit {
 
           this.realService.addReal(real).subscribe(result => result);
         });
+
   }
 
 

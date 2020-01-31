@@ -44,6 +44,11 @@ export class UsersRepository {
           .then((results: any) => new User(results[0]));
     }
 
+    findByEmail(email: string): Promise<User> {
+      return this.connection.query(`SELECT * FROM ${this.table} WHERE email = ?`, [email])
+        .then((results: any) => new User(results[0]));
+  }
+
 
     /**
      * Make a query to the database to insert a new post and return the created post in a promise.
@@ -51,8 +56,8 @@ export class UsersRepository {
      */
     insert(user: User) {
       return this.connection.query(
-        `INSERT INTO ${this.table} (firstname, lastname, title, description, telephone, email, linkedin, github, twitter, cv, photo) VALUES (?,?,?,?,?,?,?,?,?,?,?) `,
-        [user.firstname, user.lastname, user.title, user.description, user.telephone, user.email, user.linkedin, user.github, user.twitter, user.cv, user.photo]
+        `INSERT INTO ${this.table} (firstname, lastname, title, description, telephone, email, linkedin, github, twitter, cv, photo, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) `,
+        [user.firstname, user.lastname, user.title, user.description, user.telephone, user.email, user.linkedin, user.github, user.twitter, user.cv, user.photo, user.password]
       ).then((result: any) => {
         // After an insert the insert id is directly passed in the promise
         return this.findById(result.insertId);
@@ -65,8 +70,17 @@ export class UsersRepository {
      */
     update(user: User) {
       return this.connection.query(
-        `UPDATE ${this.table} SET firstname = ?, lastname = ?, title = ?, description = ?, telephone = ?, email = ?, linkedin = ?, github = ?, twitter = ?, cv = ?, photo = ? WHERE id = ?`,
-        [user.firstname, user.lastname, user.title, user.description, user.telephone, user.email, user.linkedin, user.github, user.twitter, user.cv, user.photo, user.id]
+        `UPDATE ${this.table} SET firstname = ?, lastname = ?, title = ?, description = ?, telephone = ?, email = ?, linkedin = ?, github = ?, twitter = ?, cv = ?, photo = ?, password = ? WHERE id = ?`,
+        [user.firstname, user.lastname, user.title, user.description, user.telephone, user.email, user.linkedin, user.github, user.twitter, user.cv, user.photo, user.password, user.id]
+      ).then(() => {
+        return this.findById(user.id);
+      });
+    }
+
+    changePassword(user: User) {
+      return this.connection.query(
+        `UPDATE ${this.table} SET password = ? WHERE id = ?`,
+        [user.password, user.id]
       ).then(() => {
         return this.findById(user.id);
       });

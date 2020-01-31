@@ -14,6 +14,11 @@ export const UsersController = (app: Application) => {
     const router: Router = express.Router();
     const userService = UsersService.getInstance();
 
+    router.get('/me', userService.verifyToken, async (req: Request, res: Response) => {
+      const user = req.user;
+      res.send(user);
+  });
+
     /**
      * Return all posts in JSON
      */
@@ -35,7 +40,53 @@ export const UsersController = (app: Application) => {
           console.log(err);
         })
     });
+    
+    router.post('/register', (req: Request, res: Response) => {
+      const user: User = req.body;
+      console.log("Utilisateur connecté dans le controller " +user)
 
+      userService.signup(user).then((registeredUser: User) => {
+          res.send({
+          ...registeredUser,
+          password: ''
+          });
+      })
+      .catch(err => {
+          console.log(err);
+      })
+  });
+
+  router.post('/login', (req: Request, res: Response) => {
+    const user: User = req.body;
+    userService.signin(user.email, user.password).then((results: any) => {
+        res.send({
+            token: results.token,
+            id: results.id,
+            email: results.email
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(401);
+    })
+});
+
+
+  //Route for changing password
+
+  router.put('/changePassword', (req: Request, res: Response) => {
+    const user: User = req.body;
+    console.log("Utilisateur connecté dans le controller " +user)
+    userService.changePassword(user).then((registeredUser: User) => {
+        res.send({
+        ...registeredUser,
+        password: ''
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })
+});
     /**
      * Create a new post from a JSON body and return the created post in JSON.
      */
