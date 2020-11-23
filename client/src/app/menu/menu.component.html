@@ -15,10 +15,10 @@
 
     <div class="mobileMenu">
         <div class="name">{{user?.firstname}} <span class="lastname">{{user?.lastname}}</span></div>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <button mat-icon-button [matMenuTriggerFor]="beforeMenu" aria-label="Example icon-button with a menu">
             <mat-icon>menu</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
+          <mat-menu #beforeMenu="matMenu" xPosition="before">
             <button mat-menu-item><a href="#">Accueil</a></button>
             <button mat-menu-item><a routerLink='competences'>Compétences</a></button>
             <button mat-menu-item><a routerLink='realisations'>Réalisations</a></button>

@@ -80,7 +80,9 @@ a:active
 
     .mobileMenu
     {
-        display: block;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
     .matMenu
     {
