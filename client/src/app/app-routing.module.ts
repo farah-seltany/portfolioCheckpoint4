@@ -10,7 +10,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 const routes: Routes = [
   {
-    path: '', component: HomeComponent
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full'
   },
   {
     path: 'contact', component: ContactComponent
@@ -27,7 +29,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    anchorScrolling: 'enabled',
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

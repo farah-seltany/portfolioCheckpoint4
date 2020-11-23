@@ -27,7 +27,6 @@ export class UsersService {
 
     async signup(user: User): Promise<User> {
       user.password = await argon2.hash(user.password);
-      console.log(user.password)
       return this.repository.insert(user);
     }
 
@@ -64,9 +63,7 @@ export class UsersService {
 
     async verifyToken(req: Request, res: Response, next: Function) {
       const authorization = req.headers.authorization;
-      console.log(req.headers)
       const bearerToken = authorization?.split(' ')[1];
-      console.log("bearer" + bearerToken)
       if (!bearerToken) {
           res.sendStatus(401);
       }
@@ -88,7 +85,7 @@ export class UsersService {
       }
   }
 
- 
+
 
     // Business logic
 
