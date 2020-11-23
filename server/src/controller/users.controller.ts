@@ -40,10 +40,9 @@ export const UsersController = (app: Application) => {
           console.log(err);
         })
     });
-    
+
     router.post('/register', (req: Request, res: Response) => {
       const user: User = req.body;
-      console.log("Utilisateur connecté dans le controller " +user)
 
       userService.signup(user).then((registeredUser: User) => {
           res.send({
@@ -76,7 +75,6 @@ export const UsersController = (app: Application) => {
 
   router.put('/changePassword', (req: Request, res: Response) => {
     const user: User = req.body;
-    console.log("Utilisateur connecté dans le controller " +user)
     userService.changePassword(user).then((registeredUser: User) => {
         res.send({
         ...registeredUser,

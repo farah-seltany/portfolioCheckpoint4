@@ -22,7 +22,6 @@ export class AuthService {
       tap(results => {
         if (results) {
           this.storeCredentials(results);
-          console.log('lol')
         }
       })
     );
@@ -46,6 +45,6 @@ export class AuthService {
     if (credentials.email) {
       localStorage.setItem('email', credentials.email);
     }
-  
+
   }
 }

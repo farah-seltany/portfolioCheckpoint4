@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   })
 
   constructor(
-    private router:Router, 
-    private fb: FormBuilder, 
-    private authService: AuthService, 
+    private router:Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -31,11 +31,10 @@ export class LoginComponent implements OnInit {
   {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-    
+
     this.authService.login(email, password)
       .subscribe(
           results => {
-            console.log('lol')
           this.userService.loadUser().subscribe(result => {
             this.router.navigateByUrl('admin');
           })
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
         error => {
         }
       );
-    
+
   }
 
 }

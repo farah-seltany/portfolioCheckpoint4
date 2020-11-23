@@ -1,4 +1,4 @@
-<div class="competences">
+<div class="competences" id="competences">
     <p class="compTitle">Compétences</p>
     <div class="competencesContainer">
         <div class="compCard" *ngFor="let comp of comps">
@@ -15,6 +15,6 @@
             <div *ngIf="matprogressbar.value / 20 == 4"><p class="grade">Confirmé</p></div>
             <div *ngIf="matprogressbar.value / 20 == 5"><p class="grade">Expert</p></div>
         </div>
-        
+
     </div>
 </div>
